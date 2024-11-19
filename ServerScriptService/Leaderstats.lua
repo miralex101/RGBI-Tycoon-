@@ -1,5 +1,7 @@
 local Players = game:GetService("Players")
-local test = require(game.ServerScriptService.DataStoreHandler)
+local ServerScriptService = game:GetService("ServerScriptService")
+
+local DataStoreHandler = require(ServerScriptService.GameLogic.Modules.DataStoreHandler)
 
 Players.PlayerAdded:Connect(function(player)
 	local leaderstats = Instance.new("Folder")
@@ -29,9 +31,9 @@ Players.PlayerAdded:Connect(function(player)
 		end
 	end)
 	
-	test:LoadPlayerData(player)
+	DataStoreHandler:LoadPlayerData(player)
 end)
 
 Players.PlayerRemoving:Connect(function(player)
-	test:SavePlayerData(player)
+	DataStoreHandler:SavePlayerData(player)
 end)
